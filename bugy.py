@@ -10,15 +10,21 @@ from modes import *
 
 typingPrint("Hello Friend\n\n")
 typingPrint('''[1] one domain
-[2] list of subdomains\n''')
+[2] list of subdomains
+[3] notify config
+[4] subfinder config\n''')
 pick = input(">> ")
 
 
 def one(domain,notify):
+    clear()
+    typingPrint("now we using subfinder\n")
     print(subprocess.run("subfinder -d "+ domain +" -o subs.txt",shell=True))
     clear()
+    typingPrint("now we using amass\n")
     print(subprocess.run("amass enum -passive -d "+domain+" -o amss_subs.txt",shell=True))
     clear()
+    typingPrint("now we using assetfinder\n")
     print(subprocess.run("assetfinder -subs-only "+domain+" > asset_subs.txt",shell=True))
     clear()
     typingPrint("opening browser, watch the results")
@@ -30,12 +36,19 @@ def one(domain,notify):
     clear()
     typingPrint("now we checked on open subs by httpx check the file called httpx")
     typingPrint("so we will go to part to now 'Directory and file Enumeration'")
+    clear()
+    typingPrint("now we using dirb\n")
     print(subprocess.run("dirb "+domain,shell=True))
     clear()
+    typingPrint("now we using dirsearch")
     print(subprocess.run("dirsearch -u "+domain,shell=True))
     clear()
+    typingPrint("now we using gobuster")
+    print(subprocess.run("",shell=True))
+    clear()
+    typingPrint("now we using ffuf")
     print(subprocess.run("ffuf -u https://"+domain+"/FUZZ -w /usr/share/Seclists/Discovery/Web-content/raft-medium-files.txt -mc 200,302,301 -t 1000"))
-    
+    clear()
 
 
 def two(list,notify):
@@ -64,5 +77,9 @@ elif pick == "2" or pick == 2:
     else:
         print("wrong answer try again with yes or no only !")
         sys.exit
+elif pick == "3" or pick == 3:
+    print(subprocess.run("cd ~ && sudo nano .config/notify/provider-config.yaml",shell=True))
+elif pick == "4" or pick == 4:
+    print(subprocess.run("cd ~ && sudo nano .config/subfinder/provider-config.yaml",shell=True))
 else:
     print("\nwrong answer")
