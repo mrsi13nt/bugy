@@ -14,7 +14,7 @@ typingPrint('''[1] one domain
 pick = input(">> ")
 
 
-def one(domain):
+def one(domain,notify):
     print(subprocess.run("subfinder -d "+ domain +" -o subs.txt",shell=True))
     clear()
     print(subprocess.run("amass enum -passive -d "+domain+" -o amss_subs.txt",shell=True))
@@ -30,10 +30,15 @@ def one(domain):
     clear()
     typingPrint("now we checked on open subs by httpx check the file called httpx")
     typingPrint("so we will go to part to now 'Directory and file Enumeration'")
+    print(subprocess.run("dirb "+domain,shell=True))
+    clear()
+    print(subprocess.run("dirsearch -u "+domain,shell=True))
+    clear()
+    print(subprocess.run("ffuf -u https://"+domain+"/FUZZ -w /usr/share/Seclists/Discovery/Web-content/raft-medium-files.txt -mc 200,302,301 -t 1000"))
+    
 
 
-
-def two(list):
+def two(list,notify):
     print(subprocess.run("subfinder -l "+ list +" -o subs.txt",shell=True))
     clear()
 
@@ -41,9 +46,23 @@ def two(list):
 
 if pick == "1" or pick == 1:
     domainpick = input("enter your domain: ")
-    one(domainpick)
+    notify = input("are you want to use notify?    (yes/no)\n>> ")
+    if notify == "yes" or notify == "y" or notify == "Yes" or notify == "Y":
+        one(domainpick,"yes")
+    elif notify == "no" or notify == "n" or notify == "No" or notify == "N":
+        one(domainpick,"no")
+    else:
+        print("wrong answer try again with yes or no only !")
+        sys.exit
 elif pick == "2" or pick == 2:
     listpick = input("enter list of subdomains : ")
-    two(listpick)
+    notify = input("are you want to use notify?    (yes/no)\n>> ")
+    if notify == "yes" or notify == "y" or notify == "Yes" or notify == "Y":
+        two(listpick,"yes")
+    elif notify == "no" or notify == "n" or notify == "No" or notify == "N":
+        two(listpick,"no")
+    else:
+        print("wrong answer try again with yes or no only !")
+        sys.exit
 else:
     print("\nwrong answer")
