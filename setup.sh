@@ -10,7 +10,9 @@ sudo apt install arjun -y
 sudo apt install gospider -y
 sudo apt install dirb -y
 sudo apt install ffuf -y
-
+sudo apt install dirsearch -y
+sudo apt install httprobe -y
+sudo apt install seclists -y
 
 go install github.com/lc/gau/v2/cmd/gau@latest
 sudo mv ~/go/bin/gau /usr/local/bin/
@@ -26,3 +28,6 @@ wget https://github.com/lc/gau/blob/master/.gau.toml
 
 go install github.com/projectdiscovery/katana/cmd/katana@latest
 sudo mv ~/go/bin/katana /usr/local/bin/
+
+go install github.com/tomnomnom/waybackurls@latest
+sudo mv ~/go/bin/waybackurls /usr/local/bin/
