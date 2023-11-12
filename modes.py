@@ -10,7 +10,7 @@ def clear():
 
 def report(answer):
   if answer == "y":
-    file_paths = ['outputs/subdomains.txt', 'outputs/dir.txt', 'outputs/part3_output.txt', 'outputs/waybackurls.txt', 'outputs/gau.txt', 'outputs/katana.txt', 'outputs/hakrawler.txt']
+    file_paths = ['outputs/subdomains.txt', 'outputs/waybackurls.txt', 'outputs/gau.txt', 'outputs/katana.txt', 'outputs/hakrawler.txt']
 
     with open('outputs/report.txt', 'w', encoding='utf-8') as output_file:
       for file_path in file_paths:
@@ -23,6 +23,6 @@ def report(answer):
 
   elif answer == "n":
     typingPrint("don't forget to check outputs file\n")
-    typingPrint("Bye. :)")
+    typingPrint("Bye. :)\n")
   else:
     print("error")
