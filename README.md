@@ -23,7 +23,7 @@ sudo python3 bugy.py
 ```
 ___
 # usage:
-![first option]()
+![first option](https://github.com/Vairous7x/V7x-Tool/assets/62663100/ce065c6d-3744-4a76-bd13-37a5dec86a5c)
 after you choose first option for scanning main domain it will ask you for main domain, but if you choose the list of subdomains make sure you formatted it well, example: `www.website.com` in every single line and if the file not in the same directory make sure you put the full bath, and enjoy:)
 
 ![notify]()
