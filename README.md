@@ -27,6 +27,9 @@ after you choose first option for scanning main domain it will ask you for main 
 ![notify]()
 after you pick 1 or 2 options and put the domain or subdomains list it will ask you if you want to you **notify** and in summary it's a tool give you a notifications about progress that happens on the terminal, but if you found yourself need to know more about it check this [link]().
 
-*remember if you want to use notify make sure you made the configuration of it well.
+* remember if you want to use notify make sure you made the configuration of it well.
 
 ___
+
+# tool map:
+![map](https://ibb.co/qmb2Lz1)
