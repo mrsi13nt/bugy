@@ -32,4 +32,4 @@ after you pick 1 or 2 options and put the domain or subdomains list it will ask 
 ___
 
 # tool map:
-![map](https://i.ibb.co/mhQPrmz/IMG-20231113-122123-446.jpg)
+![map](https://github.com/Vairous7x/V7x-Tool/assets/62663100/7b19c5da-3cba-4693-9cb1-977d194dab27)
