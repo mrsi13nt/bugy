@@ -1,3 +1,5 @@
+![bugy](https://github.com/Vairous7x/V7x-Tool/assets/62663100/a00f5361-344c-476d-9964-13092c1aa9db)
+
 # bugy
 a simple helpful tool for Bug Hunters that helps hackers for **recon** part,and it uses many popular tools.
 
@@ -25,7 +27,7 @@ ___
 after you choose first option for scanning main domain it will ask you for main domain, but if you choose the list of subdomains make sure you formatted it well, example: `www.website.com` in every single line and if the file not in the same directory make sure you put the full bath, and enjoy:)
 
 ![notify]()
-after you pick 1 or 2 options and put the domain or subdomains list it will ask you if you want to you **notify** and in summary it's a tool give you a notifications about progress that happens on the terminal, but if you found yourself need to know more about it check this [link]().
+after you pick 1 or 2 options and put the domain or subdomains list it will ask you if you want to you **notify** and in summary it's a tool give you a notifications about progress that happens on the terminal, but if you found yourself need to know more about it check this [link](https://github.com/projectdiscovery/notify).
 
 * remember if you want to use notify make sure you made the configuration of it well.
 
