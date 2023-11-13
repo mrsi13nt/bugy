@@ -13,7 +13,7 @@ git clone https://github.com/mrsi13nt/bugy
 2. get into the file `cd bugy`.
 
 3. #### run setup command 
-* it's important 
+* it's important ⚠️⚠️
 ```shell
 sudo bash setup.sh
 ```
