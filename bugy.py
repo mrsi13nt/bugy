@@ -50,7 +50,7 @@ def one(domain,notify):
             for line in file:
                 line = line.replace("\n", "")
                 subprocess.run("echo 'scanning subdomain: "+line+"' | notify -silent",shell=True)
-                print(subprocess.run("dirsearch -e php,html,js,jsp,bak,zip,tgz,txt -u "+line+" -t 25 -q | notify -bulk -silent",shell=True), end='')
+                print(subprocess.run("dirsearch -e php,html,js,jsp,bak,zip,tgz,txt -u "+line+" -t 25 -x 404 -q | notify -bulk -silent",shell=True), end='')
         clear()
         subprocess.run("echo 'now we using gobuster' | notify -silent",shell=True)
         with open(file_path_probe,'r') as file:
@@ -72,7 +72,7 @@ def one(domain,notify):
         typingPrint("now we finished part 2, let's keep working\n")
         typingPrint("starting part 3 'Parameter fuzzing and gathering'")
         time.sleep(2)
-        print(subprocess.run("cat outputs/dirsearch.txt outputs/gobuster.txt outputs/ffuf.txt outputs/dirb >> outputs/dir.txt",shell=True))
+        print(subprocess.run("cat outputs/dirsearch.txt outputs/gobuster.txt outputs/ffuf.txt >> outputs/dir.txt",shell=True))
         subprocess.run("echo 'we now finished the part 2 and heading to part 3 :) ' | notify -silent",shell=True)
         clear()
         typingPrint("now we using arjun")
@@ -137,6 +137,8 @@ def one(domain,notify):
         typingPrint("now we checked on open subs by httpx check the file called httpx\n")
         typingPrint("so we will go to part to now 'Directory and file Enumeration'")
         time.sleep(2)
+        subprocess.run("touch outputs/dirsearch.txt",shell=True)
+        subprocess.run("chmod +w outputs/dirsearch.txt",shell=True)
         clear()
         file_path = 'outputs/uniq_subs.txt'
         file_path_probe = 'outputs/httpx.txt'
@@ -144,19 +146,19 @@ def one(domain,notify):
         with open(file_path_probe,'r') as file:
             for line in file:
                 line = line.replace("\n", "")
-                print(subprocess.run("dirsearch -e php,html,js,jsp,bak,zip,tgz,txt -u "+line+" -t 10 -o outputs/dirsearch.txt",shell=True), end='')
+                print(subprocess.run("dirsearch -e php,html,js,jsp,bak,zip,tgz,txt -u "+line+" -t 25 -x 404 -q | cat >> outputs/dirsearch.txt",shell=True))
         clear()
         typingPrint("now we using gobuster")
         with open(file_path_probe,'r') as file:
             for line in file:
                 line = line.replace("\n", "")
-                print(subprocess.run("gobuster dir -u "+line+" --no-error -r -o outputs/gobuster.txt",shell=True), end='')
+                print(subprocess.run("gobuster dir -u "+line+" --no-error -r -o outputs/gobuster.txt",shell=True))
         clear()
         typingPrint("now we using ffuf")
         with open(file_path_probe,'r') as file:
             for line in file:
                 line = line.replace("\n", "")
-                print(subprocess.run("ffuf -u "+line+"/FUZZ -w /usr/share/Seclists/Discovery/Web-content/raft-medium-files.txt -mc 200,302,301 -c -t 20 -o outputs/ffuf.txt"), end='')
+                print(subprocess.run("ffuf -u "+line+"/FUZZ -w /usr/share/Seclists/Discovery/Web-content/raft-medium-files.txt -mc 200,302,301 -c -t 20 -o outputs/ffuf.txt",shell=True))
         clear()
         subprocess.run("notify -bulk -silent -data outputs/ffuf.txt",shell=True)
         clear()
@@ -216,15 +218,14 @@ def two(list,notify):
             for line in file:
                 line = line.replace("\n", "")
                 subprocess.run("echo 'scanning subdomain: "+line+"' | notify -silent",shell=True)
-                print(subprocess.run("dirsearch -e php,html,js,jsp,bak,zip,tgz,txt -u "+line+" -t 10 -o outputs/dirsearch.txt",shell=True), end='')
-        subprocess.run("notify -bulk -silent -data outputs/dirsearch.txt",shell=True)
+                print(subprocess.run("dirsearch -e php,html,js,jsp,bak,zip,tgz,txt -u "+line+" -t 25 -x 404 -q | notify -bulk -silent",shell=True))
         clear()
         subprocess.run("echo 'now we using gobuster' | notify -silent",shell=True)
         with open(file_path_probe,'r') as file:
             for line in file:
                 line = line.replace("\n", "")
                 subprocess.run("echo 'scanning subdomain: "+line+"' | notify -silent",shell=True)
-                print(subprocess.run("gobuster dir -u "+line+" --no-error -r -o outputs/gobuster.txt",shell=True), end='')
+                print(subprocess.run("gobuster dir -u "+line+" --no-error -r -o outputs/gobuster.txt",shell=True))
         subprocess.run("notify -bulk -silent -data outputs/gobuster.txt",shell=True)
         clear()
         subprocess.run("echo 'now we using ffuf' | notify -silent",shell=True)
@@ -232,7 +233,7 @@ def two(list,notify):
             for line in file:
                 line = line.replace("\n", "")
                 subprocess.run("echo 'scanning subdomain: "+line+"' | notify -silent",shell=True)
-                print(subprocess.run("ffuf -u "+line+"/FUZZ -w /usr/share/Seclists/Discovery/Web-content/raft-medium-files.txt -mc 200,302,301 -c -t 20 -o outputs/ffuf.txt",shell=True), end='')
+                print(subprocess.run("ffuf -u "+line+"/FUZZ -w /usr/share/Seclists/Discovery/Web-content/raft-medium-files.txt -mc 200,302,301 -c -t 20 -o outputs/ffuf.txt",shell=True))
         subprocess.run("notify -bulk -silent -data outputs/ffuf.txt",shell=True)
         clear()
         typingPrint("now we finished part 2, let's keep working\n")
@@ -289,25 +290,27 @@ def two(list,notify):
         clear()
         typingPrint("we will start now 'Directory and file Enumeration'")
         time.sleep(2)
+        subprocess.run("touch outputs/dirsearch.txt",shell=True)
+        subprocess.run("chmod +w outputs/dirsearch.txt",shell=True)
         clear()
         file_path_probe = 'outputs/subdomains.txt'
         typingPrint("now we using dirsearch")
         with open(file_path_probe,'r') as file:
             for line in file:
                 line = line.replace("\n", "")
-                print(subprocess.run("dirsearch -e php,html,js,jsp,bak,zip,tgz,txt -u "+line+" -t 10 -o outputs/dirsearch.txt",shell=True), end='')
+                print(subprocess.run("dirsearch -e php,html,js,jsp,bak,zip,tgz,txt -u "+line+" -t 25 -x 404 -q | cat >> outputs/dirsearch.txt",shell=True))
         clear()
         typingPrint("now we using gobuster")
         with open(file_path_probe,'r') as file:
             for line in file:
                 line = line.replace("\n", "")
-                print(subprocess.run("gobuster dir -u "+line+" --no-error -r -o outputs/gobuster.txt",shell=True), end='')
+                print(subprocess.run("gobuster dir -u "+line+" --no-error -r -o outputs/gobuster.txt",shell=True))
         clear()
         typingPrint("now we using ffuf")
         with open(file_path_probe,'r') as file:
             for line in file:
                 line = line.replace("\n", "")
-                print(subprocess.run("ffuf -u "+line+"/FUZZ -w /usr/share/Seclists/Discovery/Web-content/raft-medium-files.txt -mc 200,302,301 -c -t 20 -o outputs/ffuf.txt"), end='')
+                print(subprocess.run("ffuf -u "+line+"/FUZZ -w /usr/share/Seclists/Discovery/Web-content/raft-medium-files.txt -mc 200,302,301 -c -t 20 -o outputs/ffuf.txt",shell=True))
         clear()
         typingPrint("now we finished part 1, let's keep working\n")
         typingPrint("starting part 2 'Parameter fuzzing and gathering'\n")
