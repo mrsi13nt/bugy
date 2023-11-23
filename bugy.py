@@ -35,7 +35,7 @@ def one(domain,notify):
         typingPrint("now we finished subdomains finding. :)\n")
         typingPrint("let's start sort them in one file\n")
         print(subprocess.run("cat outputs/finder_subs.txt outputs/asset_subs.txt | sort -u >> outputs/uniq_subs.txt",shell=True))
-        print(subprocess.run("cat outputs/uniq_subs.txt | httpx -o outputs/httpx.txt",shell=True))
+        print(subprocess.run("cat outputs/uniq_subs.txt | httpx -mc 200,301,302,403 -o outputs/httpx.txt",shell=True))
         subprocess.run("echo 'results of httpx' | notify -bulk -silent",shell=True)
         subprocess.run("notify -bulk -silent -data outputs/httpx.txt",shell=True)
         clear()
@@ -132,14 +132,14 @@ def one(domain,notify):
         typingPrint("now we finished subdomains finding. :)\n")
         typingPrint("let's start sort them in one file\n")
         print(subprocess.run("cat outputs/finder_subs.txt outputs/asset_subs.txt | sort -u >> outputs/uniq_subs.txt",shell=True))
-        print(subprocess.run("cat outputs/uniq_subs.txt | httpx -o outputs/httpx",shell=True))
+        print(subprocess.run("cat outputs/uniq_subs.txt | httpx -mc 200,301,302,403 -o outputs/httpx",shell=True))
         clear()
         typingPrint("now we checked on open subs by httpx check the file called httpx\n")
         typingPrint("so we will go to part to now 'Directory and file Enumeration'")
         time.sleep(2)
         clear()
         file_path = 'outputs/uniq_subs.txt'
-        file_path_probe = 'outputs/https.txt'
+        file_path_probe = 'outputs/httpx.txt'
         typingPrint("now we using dirsearch")
         with open(file_path_probe,'r') as file:
             for line in file:
